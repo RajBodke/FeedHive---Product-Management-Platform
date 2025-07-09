@@ -1,0 +1,59 @@
+.App {
+  background: var(--main-gradient);
+  min-height: 100vh;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+.App.dark {
+  background: var(--main-gradient-dark);
+}
+
+.overflowY-hidden {
+  overflow-y: hidden;
+}
+
+.d-none {
+  display: none;
+}
+
+.container {
+  max-width: 327px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 689px;
+  }
+}
+
+.desktop-container {
+  min-width: 825px;
+}
+
+@media screen and (min-width: 1366px) {
+  .container {
+    max-width: 1110px;
+  }
+}
+
+.error {
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  font-size: 1.5rem;
+  padding-bottom: 2.5rem;
+  text-align: center;
+  color: #d73737;
+}
+
+.success {
+  color: #4bca81;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  font-size: 1.5rem;
+  padding-bottom: 2.5rem;
+  text-align: center;
+}

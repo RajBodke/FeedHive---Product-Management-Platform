@@ -1,0 +1,21 @@
+.category-list {
+  max-width: 223px;
+  max-height: 178px;
+  background: var(--main-gradient);
+  padding: 2.4rem;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.category-list__item {
+  margin-bottom: 0.6rem;
+}
+
+@media screen and (min-width: 1366px) {
+  .category-list {
+    max-width: 255px;
+    max-height: 166px;
+  }
+}

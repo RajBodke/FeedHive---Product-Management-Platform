@@ -112,12 +112,3 @@ Feel free to connect for feedback or collaboration:
   
 ***GitHub: [@RajBodke_18](https://github.com/RajBodke)*** <br>
 ***LinkedIn: www.linkedin.com/in/rajbodke***
-
-### 📁 Create `assets/` Folder
-
-Inside your root project directory:
-
-```bash
-mkdir assets
-
-

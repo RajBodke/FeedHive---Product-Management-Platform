@@ -8,6 +8,9 @@ import DropDownCategory from '../../components/DropDownCategory';
 import Button from '../../components/common/Button';
 import BackButton from '../../components/common/BackButton';
 
+// API Services
+import { createFeedback } from '../../services/api';
+
 // Styles
 import './CreateSuggestion.css';
 
@@ -16,47 +19,52 @@ const categoryList = ['feature', 'UI', 'UX', 'enhancement', 'bug'];
 const CreateSuggestion = ({ suggestions, setSuggestions }) => {
   const navigate = useNavigate();
   const [currentCategory, setCurrentCategory] = useState('feature');
+  const [userName, setUserName] = useState('');
   const [title, setTitle] = useState('');
   const [details, setDetails] = useState('');
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const changeCategory = (newCategory) => setCurrentCategory(newCategory);
 
-  const addSuggestion = (suggestionToAdd) => {
-    suggestions.push(suggestionToAdd);
-    return suggestionToAdd;
-  };
-
-  const handleSubmitSuggestion = (e) => {
+  const handleSubmitSuggestion = async (e) => {
     e.preventDefault();
 
-    const suggestionToAdd = {
-      id: Math.random(),
-      title,
-      category: currentCategory,
-      description: details,
-      status: 'suggestion',
-      upvotes: 0,
-    };
-
     try {
+      if (userName === '') throw new Error("User name can't be empty...");
+      if (userName.length < 2) throw new Error('User name is too short...');
       if (details === '') throw new Error("The input can't be empty...");
       if (details.length < 2) throw new Error('The input is too short...');
       if (title === '') throw new Error("The input can't be empty...");
       if (title.length < 2) throw new Error('The input is too short...');
 
-      setSuggestions((prevSuggestions) => [
-        ...prevSuggestions,
-        addSuggestion(suggestionToAdd),
-      ]);
+      setLoading(true);
+      setError(null);
+
+      const feedbackData = {
+        title,
+        content: details,
+        user: userName,
+        category: currentCategory,
+        status: 'suggestion',
+        upvotes: 0,
+      };
+
+      const newFeedback = await createFeedback(feedbackData);
+      
+      // Update local state with new feedback
+      setSuggestions((prevSuggestions) => [newFeedback, ...prevSuggestions]);
+      
+      setUserName('');
       setDetails('');
       setTitle('');
-      setError(null);
       setSuccess('The Feedback has been added!');
       setTimeout(() => navigate('/product-feedback-app/'), 2000);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Failed to create feedback');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -74,6 +82,20 @@ const CreateSuggestion = ({ suggestions, setSuggestions }) => {
         </header>
         <form onSubmit={handleSubmitSuggestion}>
           <main>
+            <div className="create-suggestion__user">
+              <label>
+                <h2>Your Name</h2>
+                <p className="create-suggestion__user__description">
+                  Enter your name for this feedback
+                </p>
+                <input
+                  onChange={(e) => setUserName(e.target.value)}
+                  value={userName}
+                  disabled={loading}
+                  placeholder="Enter your name"
+                />
+              </label>
+            </div>
             <div className="create-suggestion__title">
               <label>
                 <h2>Feedback Title</h2>
@@ -83,6 +105,8 @@ const CreateSuggestion = ({ suggestions, setSuggestions }) => {
                 <input
                   onChange={(e) => setTitle(e.target.value)}
                   value={title}
+                  disabled={loading}
+                  placeholder="Enter feedback title"
                 />
               </label>
             </div>
@@ -106,7 +130,9 @@ const CreateSuggestion = ({ suggestions, setSuggestions }) => {
                 </p>
                 <textarea
                   onChange={(e) => setDetails(e.target.value)}
-                  value={details}></textarea>
+                  value={details}
+                  disabled={loading}
+                  placeholder="Enter feedback details"></textarea>
               </label>
             </div>
           </main>
@@ -114,12 +140,16 @@ const CreateSuggestion = ({ suggestions, setSuggestions }) => {
           {error && <p className="error">{error}</p>}
           <footer>
             <div className="save-btn">
-              <Button bgColor={'purple'} content={'Add Feedback'} />
+              <Button 
+                bgColor={'purple'} 
+                content={loading ? 'Adding...' : 'Add Feedback'} 
+              />
             </div>
             <Link
               to="/product-feedback-app/"
               className="create-suggestion--cancel-btn"
               onClick={() => {
+                setUserName('');
                 setTitle('');
                 setDetails('');
                 setError(null);

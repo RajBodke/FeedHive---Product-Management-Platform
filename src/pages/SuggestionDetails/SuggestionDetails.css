@@ -1,42 +1,118 @@
-.suggestion-details__nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 13rem;
-  padding-block: 2.4rem;
+.suggestion-details--container {
+  max-width: 730px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-.suggestion-details__nav .back-btn {
-  margin: 0;
-  padding: 0;
+.suggestion-details {
+  max-width: 730px;
+  margin: 0 auto;
+}
+
+.suggestion-details__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
 .nav-btn--container {
-  max-width: 119px;
+  text-decoration: none;
 }
 
-@media screen and (min-width: 768px) {
-  .suggestion-details__nav {
-    justify-content: space-between;
-  }
-
-  .nav-btn--container {
-    max-width: 142px;
-  }
+.suggestion-list__item {
+  background: white;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.suggestion-details .suggestion-list__tablet-plus {
+.suggestion-list__tablet-plus {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.suggestion-list__tablet-plus__upvotes {
+  flex-shrink: 0;
+}
+
+.suggestion-list__header {
+  flex: 1;
+}
+
+.suggestion-header__info h2 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #3a4374;
+}
+
+.suggestion-author {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #647196;
+  font-style: italic;
+}
+
+.suggestion-header__info p {
+  margin: 0 0 16px 0;
+  color: #647196;
+  line-height: 1.5;
+}
+
+.suggestion-list__footer {
+  display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
 }
 
-.suggestion-details .suggestion-list__header {
-  width: 85%;
-  padding-left: 3rem;
+.comments-section {
+  margin-top: 24px;
 }
 
-@media screen and (min-width: 1366px) {
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #647196;
+  font-size: 16px;
+}
+
+.error {
+  text-align: center;
+  padding: 40px;
+  color: #d73737;
+  font-size: 16px;
+  background: #fef2f2;
+  border-radius: 8px;
+  border: 1px solid #fecaca;
+}
+
+@media (max-width: 767px) {
   .suggestion-details--container {
-    max-width: 730px;
-    margin: 0 auto;
+    padding: 0 16px;
+  }
+  
+  .suggestion-list__item {
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  
+  .suggestion-header__info h2 {
+    font-size: 16px;
+  }
+  
+  .suggestion-author {
+    font-size: 13px;
+  }
+  
+  .suggestion-header__info p {
+    font-size: 14px;
+  }
+  
+  .comments-section {
+    margin-top: 16px;
   }
 }

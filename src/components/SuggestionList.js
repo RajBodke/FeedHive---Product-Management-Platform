@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Category from './common/Category';
 import Comments from './common/Comments';
 import Upvote from './common/Upvote';
+import DeleteButton from './common/DeleteButton';
 
 import NoSuggestionsYet from './NoSuggestionsYet';
 
@@ -13,6 +14,7 @@ const SuggestionList = ({
   menuOpen,
   handleMenuToggle,
   windowWidth,
+  onDeleteFeedback,
 }) => {
   const { pathname } = useLocation();
 
@@ -29,7 +31,7 @@ const SuggestionList = ({
               ? 'suggestion-roadmap'
               : null
           }`}
-          key={suggestion.id}>
+          key={suggestion._id || suggestion.id}>
           <header
             className="suggestion-list__header"
             onClick={() => {
@@ -46,13 +48,13 @@ const SuggestionList = ({
               )}
               <Link
                 className="suggestion-details__link"
-                to={`/product-feedback-app/suggestion-details/${suggestion.id}`}>
+                to={`/product-feedback-app/suggestion-details/${suggestion._id || suggestion.id}`}>
                 <div className="status">
                   <div className="status-dot"></div>
                   {suggestion.status}
                 </div>
                 <h2>{suggestion.title}</h2>
-                <p>{suggestion.description}</p>
+                <p>{suggestion.content || suggestion.description}</p>
                 <Category category={suggestion.category} />
               </Link>
               {windowWidth >= 768 && (
@@ -60,6 +62,14 @@ const SuggestionList = ({
                   comments={suggestion.comments ? suggestion.comments : []}
                 />
               )}
+            </div>
+            {/* Admin Delete Button */}
+            <div className="suggestion-list__admin-actions">
+              <DeleteButton
+                feedbackId={suggestion._id || suggestion.id}
+                onDelete={onDeleteFeedback}
+                className="admin-delete-btn"
+              />
             </div>
           </header>
           <footer

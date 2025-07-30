@@ -1,5 +1,5 @@
 .suggestion-list {
-  background: var(--color-white-secondary);
+  margin-top: 24px;
 }
 
 .suggestion-list.dark {
@@ -7,24 +7,37 @@
 }
 
 .suggestion-list__item {
-  background: var(--color-white-primary);
-  margin-bottom: 1.6rem;
+  background: white;
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1.6rem;
-  padding: 2.4rem;
-  max-height: 233px;
-  height: 100%;
+  padding: 24px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.suggestion-details__link {
-  text-decoration: none;
+.suggestion-list__item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.suggestion-details__link h2:hover {
-  color: var(--color-blue-primary);
+.suggestion-list__header {
+  position: relative;
+}
+
+.suggestion-list__admin-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.admin-delete-btn {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.admin-delete-btn:hover {
+  opacity: 1;
 }
 
 .suggestion-list__header h2 {
@@ -48,6 +61,57 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 16px;
+}
+
+.suggestion-details__link {
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+}
+
+.suggestion-details__link:hover {
+  text-decoration: none;
+}
+
+.suggestion-details__link h2:hover {
+  color: var(--color-blue-primary);
+}
+
+.suggestion-list__item h2 {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #3a4374;
+}
+
+.suggestion-list__item p {
+  margin: 0 0 12px 0;
+  color: #647196;
+  line-height: 1.5;
+}
+
+.suggestion-list__tablet-plus {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.suggestion-list__tablet-plus__upvotes {
+  flex-shrink: 0;
+}
+
+.suggestion-list__item.suggestion-roadmap {
+  max-height: 251px;
+  padding: 2rem;
+}
+
+.suggestion-list__item.suggestion-roadmap h2,
+.suggestion-list__item.suggestion-roadmap p {
+  font-size: 1.3rem;
+}
+.suggestion-list__item.suggestion-roadmap a {
+  padding: 0;
 }
 
 @media screen and (min-width: 768px) {
@@ -75,7 +139,19 @@
 
 /* Roadmap styles */
 .status {
-  display: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #647196;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f49f85;
 }
 
 .in-progress .status {
@@ -153,6 +229,30 @@
   border-top: 6px solid var(--color-blue-secondary);
 }
 
+.suggestion-roadmap {
+  border-left: 6px solid #f49f85;
+}
+
+.suggestion-roadmap .status-dot {
+  background: #f49f85;
+}
+
+.suggestion-roadmap.in-progress {
+  border-left-color: #ad1fea;
+}
+
+.suggestion-roadmap.in-progress .status-dot {
+  background: #ad1fea;
+}
+
+.suggestion-roadmap.live {
+  border-left-color: #62bcfa;
+}
+
+.suggestion-roadmap.live .status-dot {
+  background: #62bcfa;
+}
+
 @media screen and (min-width: 768px) {
   .suggestion-list__tablet-plus {
     display: flex;
@@ -164,25 +264,31 @@
     align-self: flex-start;
   }
 
-  .suggestion-list__item.suggestion-roadmap {
-    max-height: 251px;
-    padding: 2rem;
-  }
-
-  .suggestion-list__item.suggestion-roadmap h2,
-  .suggestion-list__item.suggestion-roadmap p {
-    font-size: 1.3rem;
-  }
-  .suggestion-list__item.suggestion-roadmap a {
-    padding: 0;
-  }
-}
-
-@media screen and (min-width: 1366px) {
   .suggestion-list__item.suggestion-roadmap h2 {
     font-size: 1.8rem;
   }
   .suggestion-list__item.suggestion-roadmap p {
     font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .suggestion-list__item {
+    padding: 20px;
+  }
+  
+  .suggestion-list__admin-actions {
+    top: 8px;
+    right: 8px;
+  }
+  
+  .admin-delete-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  
+  .admin-delete-btn svg {
+    width: 12px;
+    height: 12px;
   }
 }

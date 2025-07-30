@@ -41,12 +41,15 @@
 }
 
 .error {
-  font-weight: 700;
-  letter-spacing: 0.1rem;
-  font-size: 1.5rem;
-  padding-bottom: 2.5rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 2rem;
+  font-weight: 600;
   color: #d73737;
+  text-align: center;
+  padding: 2rem;
 }
 
 .success {
@@ -56,4 +59,14 @@
   font-size: 1.5rem;
   padding-bottom: 2.5rem;
   text-align: center;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-gray-secondary);
 }

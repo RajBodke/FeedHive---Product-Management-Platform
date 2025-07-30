@@ -21,6 +21,7 @@ const Home = ({
   menuOpen,
   handleMenuToggle,
   windowWidth,
+  onDeleteFeedback,
 }) => {
   const { pathname } = useLocation();
   const [currentCategory, setCurrentCategory] = useState('all');
@@ -175,6 +176,7 @@ const Home = ({
             menuOpen={menuOpen}
             handleMenuToggle={handleMenuToggle}
             windowWidth={windowWidth}
+            onDeleteFeedback={onDeleteFeedback}
           />
         </main>
       </div>

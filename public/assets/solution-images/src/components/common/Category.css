@@ -1,0 +1,22 @@
+.category {
+  border: none;
+  border-radius: 10px;
+  height: 30px;
+  max-width: 111px;
+  font-weight: 600;
+  font-size: 1.3rem;
+  line-height: 1.879rem;
+  text-transform: capitalize;
+  color: var(--color-blue-primary);
+  background: var(--color-white-secondary);
+  padding-inline: 1.5rem;
+  padding-block: 0.5rem;
+}
+
+.category--clickable {
+  cursor: pointer;
+}
+
+.category--clickable:hover {
+  background: #cfd7ff;
+}

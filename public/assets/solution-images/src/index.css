@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-purple: #ad1fea;
+  --color-orange: #f49f85;
+  --color-blue-primary: #4661e6;
+  --color-blue-secondary: #62bcfa;
+  --color-gray-primary: #373f68;
+  --color-gray-secondary: #3a4374;
+  --color-gray-accent: #647196;
+  --color-white-primary: #fff;
+  --color-white-secondary: #f2f4ff;
+  --color-white-accent: #f7f8fd;
+  /* Light, soft blue gradient for backgrounds */
+  --main-gradient: linear-gradient(135deg, #e3f0ff 0%, #b3d8fd 50%, #d6eaff 100%);
+  --main-gradient-dark: linear-gradient(135deg, #e3f0ff 0%, #b3d8fd 60%, #d6eaff 100%);
+  /* Slightly darker blue accent gradient for buttons/navbar */
+  --main-gradient-accent: linear-gradient(135deg, #b3d8fd 0%, #4661e6 100%);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Typography */
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  line-height: 2.3rem;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 2.4rem;
+  line-height: 3.5rem;
+  letter-spacing: -0.33px;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 2.9rem;
+  letter-spacing: -0.25px;
+}
+
+h3 {
+  font-size: 1.8rem;
+  line-height: 2.6rem;
+  letter-spacing: -0.25px;
+}
+
+h4 {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  letter-spacing: -0.2px;
+}
